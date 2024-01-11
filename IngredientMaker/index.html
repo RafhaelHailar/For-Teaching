@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Ingredient Maker</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Lemon&family=Roboto+Condensed:wght@400;500;800&display=swap');
+      body {
+        font-family: 'Lemon', serif;
+        font-family: 'Roboto Condensed', sans-serif;
+      }
+
+      .center-me {
+        position:absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+             colors: {
+                sparrow: 'rgb(238, 245, 255)',
+                robert: '#B4D4FF',
+                herald: '#176B87',
+                gray: '#f6f6f6',
+                upperGray: 'rgba(0, 0, 0, 0.7)',
+                shadowy: 'rgba(0, 0, 0, 0.6)',
+                scarlet: '#FF2400',
+                nature: '#03AC13'
+             }
+          }
+        }
+    </script>
+</head>
+<body class="bg-sparrow relative">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-1/6 bg-robert h-full text-herald" >
+            <div class="flex items-center justify-between pt-2 px-4">
+               <h1 class="text-lg font-semibold">Ingredient Maker</h1>
+               <button onclick="recipeModal.show()" class="flex items-center justify-between text-2xl text-sparrow bg-herald py-1 px-3"> + </button>
+           </div>
+        </div>
+        <div class="w-5/6 px-8 overflow-auto">
+            <div id="recipes-gallery" class="hidden">
+                <h1 class="font-bold text-3xl pt-14 pb-8">Your Recipe's</h1>  
+                <div class="flex justify-center">
+                    <div id="recipes-container" class="flex gap-20 w-5/6 flex-wrap">
+                    </div>
+                </div>
+            </div>
+            <div id="recipe-view">
+                <a href="./" class="mt-5 px-5 py-1 mb-9 bg-herald text-sparrow  inline-block" >BACK</a>
+                <div class="flex justify-between">
+                    <div>
+                        <div id="view-name" class="text-6xl font-medium mb-1"></div>
+                        <div id="view-description" class="text-lg pl-10 text-upperGray"></div>
+                    </div> 
+                    <div>
+                        <div class="w-72 h-72 mr-30">
+                            <img id="view-image" src="" />
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal-shadow" onclick="recipeModal.hide()" class="hidden w-screen h-screen top-0 left-0 bg-shadowy absolute"></div>
+    <div id="create-recipe-modal" class="center-me hidden flex justify-center items-center absolute">
+        <form onsubmit="event.preventDefault();recipeModal.add()" class="bg-gray w-80 h-96 rounded-xl px-5 py-7">
+            <h5 class="font-medium text-lg pb-6">Create Recipe</h5>
+           
+            <div class="flex flex-col gap-5">
+                <div>
+                    <label>Recipe Image Source</label>
+                    <br/>
+                    <input class="px-1 border border-robert w-full rounded" name="image" type="text"/>
+                </div>
+                <div>
+                    <label>Recipe Name</label>
+                    <br/>
+                    <input class="px-1 border border-robert w-full rounded" name="name" type="text"/>
+                </div>
+                <div>
+                    <label>Recipe Description</label>
+                    <br/>
+                    <input class="px-1 border border-robert w-full rounded" name="description" type="text"/>
+                </div>
+            </div>
+
+            <div class="text-gray flex mt-8">
+                <button onclick="recipeModal.hide(1)" type="button" class="py-2 px-3 bg-scarlet" >Cancel</button>
+                <button role="submit" class="py-2 w-full bg-nature">Add Recipe</button>
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript" src="./main.js" ></script>
+</body>
+</html>
